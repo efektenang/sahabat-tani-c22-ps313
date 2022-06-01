@@ -37,6 +37,21 @@ app.get('/api/readUser/:email', (req, res) => {
     });
 });
 
+//readarticle berdasarkan id
+app.get('/api/readUser/:eid', (req, res) => {
+    const userId = req.params.id;
+
+    const sqlQuery = "SELECT article FROM user WHERE id = ?";
+    db.query(sqlQuery, userId, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+            console.log(result);
+        }
+    });
+});
+
 //create data
 app.post('/api/createUser', (req, res) => {
     const userName = req.body.username;
