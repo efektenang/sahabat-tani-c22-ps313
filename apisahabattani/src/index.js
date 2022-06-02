@@ -38,7 +38,7 @@ app.get('/api/readUser/:email', (req, res) => {
 });
 
 //readarticle berdasarkan id
-app.get('/api/readUser/:eid', (req, res) => {
+app.get('/api/readUser/:id', (req, res) => {
     const userId = req.params.id;
 
     const sqlQuery = "SELECT article FROM user WHERE id = ?";
