@@ -119,7 +119,7 @@ app.delete('/api/deleteUser', (req, res) => {
     });
 })
 
-app.listen(3001, () => {
-    console.log('Server Running! Port 3001');
+app.listen(3003, () => {
+    console.log('Server Running! Port 3003');
 });
 
