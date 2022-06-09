@@ -40,7 +40,7 @@ app.get('/api/readUser/:email', (req, res) => {
     });
 });
 
-//readartikel
+//read artikel
 app.get('/api/readArticle', (req, res) => {
     const sqlQuery = "SELECT * FROM articles";
 
@@ -54,7 +54,7 @@ app.get('/api/readArticle', (req, res) => {
     });
 });
 
-//readarticle berdasarkan id
+//read article berdasarkan id
 app.get('/api/readArticle/:id', (req, res) => {
     const userId = req.params.id;
 
@@ -74,9 +74,12 @@ app.post('/api/createUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
     const userPassword = req.body.userpassword;
+    const userAddress = req.body.useraddress;
+    const userGender = req.body.usergender;
+    const userBirth = req.body.userbirth;
 
-    const sqlQuery = "INSERT INTO user (username, email, password) VALUE (?, ?, ?)";
-    db.query(sqlQuery, [userName, userEmail, userPassword], (err, result) => {
+    const sqlQuery = "INSERT INTO user (username, email, password, alamat, gender, tgl_lahir) VALUE (?, ?, ?, ?, ?, ?)";
+    db.query(sqlQuery, [userName, userEmail, userPassword, userAddress, userGender, userBirth], (err, result) => {
         if (err) {
             console.log(err);
         } else {
@@ -86,34 +89,19 @@ app.post('/api/createUser', (req, res) => {
     });
 });
 
-//update profile
-
-app.put('/api/updateProfile', (req, res) => {
+//update user profile
+app.put('/api/updateUser', (req, res) => {
     const userId = req.body.userid;
+    const userName = req.body.username;
+    const userEmail = req.body.useremail;
+    const userPassword = req.body.userpassword;
     const userAddress = req.body.useraddress;
     const userGender = req.body.usergender;
     const userBirth = req.body.userbirth;
 
-    const sqlQuery = "UPDATE user SET alamat = ?, gender = ?, tgl_lahir = ? WHERE user_id = ?";
-    db.query(sqlQuery, [userAddress, userGender, userBirth, userId], (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-            console.log(result);
-        }
-    });
-})
 
-//update data
-
-app.put('/api/updateUser', (req, res) => {
-    const userName = req.body.username;
-    const userEmail = req.body.useremail;
-    const userPassword = req.body.userpassword;
-
-    const sqlQuery = "UPDATE user SET username = ?, password = ? WHERE email = ?";
-    db.query(sqlQuery, [userName, userPassword, userEmail], (err, result) => {
+    const sqlQuery = "UPDATE user SET username = ?, email = ?, password = ?, alamat = ?, gender = ?, tgl_lahir = ? WHERE user_id = ?";
+    db.query(sqlQuery, [userName, userPassword, userEmail, userAddress, userGender, userBirth, userId], (err, result) => {
         if (err) {
             console.log(err);
         } else {
