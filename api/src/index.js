@@ -69,7 +69,7 @@ app.get('/api/readArticle/:id', (req, res) => {
     });
 });
 
-//create data
+//create user
 app.post('/api/createUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
@@ -85,6 +85,25 @@ app.post('/api/createUser', (req, res) => {
         }
     });
 });
+
+//update profile
+
+app.put('/api/updateProfile', (req, res) => {
+    const userId = req.body.userid;
+    const userAddress = req.body.useraddress;
+    const userGender = req.body.usergender;
+    const userBirth = req.body.userbirth;
+
+    const sqlQuery = "UPDATE user SET alamat = ?, gender = ?, tgl_lahir = ? WHERE user_id = ?";
+    db.query(sqlQuery, [userAddress, userGender, userBirth, userId], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+            console.log(result);
+        }
+    });
+})
 
 //update data
 
