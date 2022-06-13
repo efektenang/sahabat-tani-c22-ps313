@@ -74,12 +74,12 @@ app.post('/api/createUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
     const userPassword = req.body.userpassword;
-    const userAddress = req.body.useraddress;
-    const userGender = req.body.usergender;
-    const userBirth = req.body.userbirth;
+    const userAlamat = req.body.alamat;
+    const userJk = req.body.jk;
+    const userTlhr = req.body.tlhr;
 
-    const sqlQuery = "INSERT INTO user (username, email, password, alamat, gender, tgl_lahir) VALUE (?, ?, ?, ?, ?, ?)";
-    db.query(sqlQuery, [userName, userEmail, userPassword, userAddress, userGender, userBirth], (err, result) => {
+    const sqlQuery = "INSERT INTO user (username, email, password, alamat, jk, tlhr) VALUE (?, ?, ?, ?, ?, ?)";
+    db.query(sqlQuery, [userName, userEmail, userPassword, userAlamat, userJk, userTlhr], (err, result) => {
         if (err) {
             console.log(err);
         } else {
