@@ -81,13 +81,13 @@ app.put('/api/updateUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
     const userPassword = req.body.userpassword;
-    const userAddress = req.body.useraddress;
-    const userGender = req.body.usergender;
-    const userBirth = req.body.userbirth;
+    const userAlamat = req.body.alamat;
+    const userJk = req.body.jk;
+    const userTlhr = req.body.tlhr;
 
 
-    const sqlQuery = "UPDATE user SET username = ?, email = ?, password = ?, alamat = ?, gender = ?, tgl_lahir = ? WHERE user_id = ?";
-    db.query(sqlQuery, [userName, userPassword, userEmail, userAddress, userGender, userBirth, userId], (err, result) => {
+    const sqlQuery = "UPDATE user SET username = ?, email = ?, password = ?, alamat = ?, jk = ?, tlhr = ? WHERE user_id = ?";
+    db.query(sqlQuery, [userName, userEmail, userPassword, userAlamat, userJk, userTlhr, userId], (err, result) => {
         if (err) {
             console.log(err);
         } else {
