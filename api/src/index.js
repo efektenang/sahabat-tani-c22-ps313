@@ -11,20 +11,6 @@ app.use(express.json());
 app.use(forms.array());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-// readData
-app.get('/api/readData', (req, res) => {
-    const sqlQuery = "SELECT * FROM user";
-
-    db.query(sqlQuery, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-            console.log(result);
-        }
-    });
-});
-
 //readdata berdasarkan email
 app.get('/api/readUser/:email', (req, res) => {
     const userEmail = req.params.email;
@@ -74,12 +60,12 @@ app.post('/api/createUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
     const userPassword = req.body.userpassword;
-    const userAddress = req.body.useraddress;
-    const userGender = req.body.usergender;
-    const userBirth = req.body.userbirth;
+    const userAlamat = req.body.alamat;
+    const userJk = req.body.jk;
+    const userTlhr = req.body.tlhr;
 
-    const sqlQuery = "INSERT INTO user (username, email, password, alamat, gender, tgl_lahir) VALUE (?, ?, ?, ?, ?, ?)";
-    db.query(sqlQuery, [userName, userEmail, userPassword, userAddress, userGender, userBirth], (err, result) => {
+    const sqlQuery = "INSERT INTO user (username, email, password, alamat, jk, tlhr) VALUE (?, ?, ?, ?, ?, ?)";
+    db.query(sqlQuery, [userName, userEmail, userPassword, userAlamat, userJk, userTlhr], (err, result) => {
         if (err) {
             console.log(err);
         } else {
@@ -95,13 +81,13 @@ app.put('/api/updateUser', (req, res) => {
     const userName = req.body.username;
     const userEmail = req.body.useremail;
     const userPassword = req.body.userpassword;
-    const userAddress = req.body.useraddress;
-    const userGender = req.body.usergender;
-    const userBirth = req.body.userbirth;
+    const userAlamat = req.body.alamat;
+    const userJk = req.body.jk;
+    const userTlhr = req.body.tlhr;
 
 
-    const sqlQuery = "UPDATE user SET username = ?, email = ?, password = ?, alamat = ?, gender = ?, tgl_lahir = ? WHERE user_id = ?";
-    db.query(sqlQuery, [userName, userPassword, userEmail, userAddress, userGender, userBirth, userId], (err, result) => {
+    const sqlQuery = "UPDATE user SET username = ?, email = ?, password = ?, alamat = ?, jk = ?, tlhr = ? WHERE user_id = ?";
+    db.query(sqlQuery, [userName, userEmail, userPassword, userAlamat, userJk, userTlhr, userId], (err, result) => {
         if (err) {
             console.log(err);
         } else {
