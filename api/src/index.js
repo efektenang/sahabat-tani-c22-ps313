@@ -11,20 +11,6 @@ app.use(express.json());
 app.use(forms.array());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-// readData
-app.get('/api/readData', (req, res) => {
-    const sqlQuery = "SELECT * FROM user";
-
-    db.query(sqlQuery, (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.send(result);
-            console.log(result);
-        }
-    });
-});
-
 //readdata berdasarkan email
 app.get('/api/readUser/:email', (req, res) => {
     const userEmail = req.params.email;
